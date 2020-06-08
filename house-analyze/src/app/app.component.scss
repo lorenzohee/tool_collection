@@ -1,0 +1,39 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.content table {
+  tr:hover {
+    background: whitesmoke;
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container{
+  padding: 20px;
+}
+
+.loading-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff91;
+  mat-spinner {
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+}

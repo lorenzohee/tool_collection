@@ -12,6 +12,7 @@
  */
 
 var request=require('request');
+var fs = require('fs')
 var i = 0;
 var sites = []
 function init(){
@@ -23,7 +24,7 @@ function init(){
         if (!error && response.statusCode == 200) {
             console.log(i+' : request end and site is : '+sites[i])
             i++;
-            if(i<site.length){
+            if(i<sites.length){
                 init()
             }else{
                 console.log('request end')
@@ -33,9 +34,8 @@ function init(){
 }
 
 var parseString = require('xml2js').parseString;
-var xml = ``
+var xml = fs.readFileSync(`./sitemap.xml`, 'utf8')
 parseString(xml, function (err, result) {
-    
     result.urlset.url.forEach(element => {
         if(!sites.includes(element.loc[0])){
             sites.push(element.loc[0])

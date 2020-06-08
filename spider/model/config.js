@@ -5,7 +5,7 @@ const config = {
   jwtSecret: process.env.JWT_SECRET,
   frontend: process.env.MEAN_FRONTEND || 'angular',
   mongo: {
-    host: 'mongodb://localhost/mean',
+    host: 'mongodb://localhost/spider',
     port: 27017
   },
 };

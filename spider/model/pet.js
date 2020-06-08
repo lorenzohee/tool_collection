@@ -18,4 +18,4 @@ const PetSchema = new mongoose.Schema({
   });
 
 
-module.exports = mongoose.model('Pet', PetSchema);
+module.exports = mongoose.model('Ichong', PetSchema);

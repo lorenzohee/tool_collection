@@ -1,0 +1,102 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <table>
+    <tr>
+      <td>位置</td>
+      <td>
+        <div>
+          <mat-radio-group>
+            <mat-radio-button value="shinan">市南</mat-radio-button>
+            <mat-radio-button value="shibei" style="margin-left: 30px;">市北</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div>
+
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 150px;">价格</td>
+      <td>
+        <mat-grid-list cols="2" rowHeight="50px">
+          <mat-grid-tile>
+            <mat-form-field style="margin-right: 20px;">
+              <input matInput type="number" style="padding-left: 10px" autocomplete="off">
+            </mat-form-field>
+            -
+          </mat-grid-tile>
+          <mat-grid-tile>
+            -
+            <mat-form-field style="margin-left: 20px;">
+              <input matInput type="number" style="padding-left: 10px" autocomplete="off">
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </td>
+    </tr>
+    <tr>
+      <td>建筑面积(平米)</td>
+      <td>
+        <mat-grid-list cols="2" rowHeight="50px">
+          <mat-grid-tile>
+            <mat-form-field style="margin-right: 20px;">
+              <input matInput type="number" style="padding-left: 10px" autocomplete="off">
+            </mat-form-field>
+            -
+          </mat-grid-tile>
+          <mat-grid-tile>
+            -
+            <mat-form-field style="margin-left: 20px;">
+              <input matInput type="number" style="padding-left: 10px" autocomplete="off">
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </td>
+    </tr>
+    <tr>
+      <td>Search</td>
+      <td>
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="市南">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  
+  <div class="mat-elevation-z8 content">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+      <!-- ID Column -->
+      <ng-container [matColumnDef]="col" *ngFor="let col of filterColumns">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ col }}</th>
+        <td mat-cell *matCellDef="let row"> {{row[col]}} {{ col=="price" ? "万" : ( col== "price_d" ? "万/平" : ( col == "xiaoqujunjia" ? "万/平" : ( col == "area" ? "平" : "")))}}</td>
+      </ng-container>
+      <ng-container matColumnDef="domainName">
+        <th mat-header-cell *matHeaderCellDef>DomainName</th>
+        <td mat-cell *matCellDef="let row"> 
+          <span *ngFor="let domain of row['domainName']">{{ domain }}-</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row"> 
+          <a :href="{{row['url']}}" target="_blank">详情</a>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" :title="{{ row['title'] }}">
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" [length]="pageCount" (page)="pageChange($event)">></mat-paginator>
+  </div>
+</div>
+<div class="loading-panel" *ngIf="loading==true">
+  <mat-spinner></mat-spinner>
+</div>
