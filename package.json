@@ -12,6 +12,7 @@
   "author": "Lorenzo",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.1",
     "crawler": "^1.2.1",
     "mongoose": "^5.9.15"
   }
