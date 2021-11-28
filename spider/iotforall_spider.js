@@ -58,7 +58,7 @@ async function handleHref(hrefs) {
       // 页面解析完毕以后如果url中存在置为已读，否则为未读
       // console.log(href + ' ```111'+href.indexOf(baseHost))
 
-      if (href.indexOf(baseHost) === 0 && href.indexOf('cdn') < 0) {
+      if (href.indexOf(baseHost) === 0 && href.indexOf('cdn') < 0 && href.indexOf('.pdf') < 0 && href.indexOf('.png') < 0 && href.indexOf('.jpg') < 0) {
         const url_paths = await Url.find({ path: href })
         if (url_paths.length == 0) {
           const iotForAll_paths = await IotForAll.find({ url: href })
